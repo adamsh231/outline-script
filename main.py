@@ -35,7 +35,7 @@ for root, dirs, files in os.walk(docs_path, topdown=True):
         
         # Save file walk
         file_name = os.path.join(root, name)
-        arr_file = file_name.replace(docs_path, "").split("\\")
+        arr_file = file_name.replace(docs_path, "").split("/") # todo: windows -> \\
         arr_file.insert(0, docs_name)
         doc_list.append(arr_file)
 
