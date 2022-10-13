@@ -40,7 +40,7 @@ Go to the project directory
 Start script
 
 ```bash
-  python main.py --name <name for this project> --token <api-token>
+  python main.py --name <name for this project> --token <api-token> --cid <collection-id>
 ```
 
 Check outline
