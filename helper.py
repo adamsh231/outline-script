@@ -3,7 +3,6 @@ import argparse
 
 # Initial constant
 KNOWLEDGE_CENTER_ENDPOINT = "https://outline.rnd.mangkujagat.com/api"
-COLLECTION_ID = "e8e53145-445a-417c-ac61-bb52e23af200"
 README_FILE_NAME = "Readme.MD"
 ALLOWED_FILE_EXT = ".md"
 
@@ -11,6 +10,7 @@ ALLOWED_FILE_EXT = ".md"
 parser = argparse.ArgumentParser()
 parser.add_argument("--name", help="Knowledge center name of this project", default=False)
 parser.add_argument("--token", help="Outline api token", default=False)
+parser.add_argument("--cid", help="Collection ID", default=False)
 
 # Project name
 project_name = parser.parse_args().name
@@ -21,6 +21,10 @@ if not project_name:
 project_token = parser.parse_args().token
 if not project_token:
     raise ValueError("--token 'Outline api token' is Required in args")
+
+collection_id = parser.parse_args().cid
+if not collection_id:
+    raise ValueError("--cid 'Collection ID")
 
 def get_content_from_file(file_path):
     content = ""
@@ -48,7 +52,7 @@ def searchDocs(query):
         "/documents.search",
         {
             "query": query,
-            "collectionId": COLLECTION_ID,
+            "collectionId": collection_id,
             "includeArchived": False,
             "includeDrafts": False,
         },
@@ -61,7 +65,7 @@ def createDocs(title, parent_id, content):
         "/documents.create",
         payload={
             "title": title,
-            "collectionId": COLLECTION_ID,
+            "collectionId": collection_id,
             "parentDocumentId": parent_id,
             "text": content,
             "publish": True,
