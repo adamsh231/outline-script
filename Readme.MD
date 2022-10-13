@@ -6,7 +6,7 @@ Script automation for auto update from repo to knowledge center
 
 ## Authors
 
-- [AdamSH](https://www.github.com/adamsh231)
+- [AdamSH](adam@majoo.id)
 
 
 ## Documentation
@@ -40,8 +40,15 @@ Go to the project directory
 Start script
 
 ```bash
-  python main.py --name <name for this project>
+  python main.py --name <name for this project> --token <api-token>
 ```
+
+Check outline
+
+```
+  go to outline server 
+```
+
 ## Tech Stack
 
 **Tool:** Outline
