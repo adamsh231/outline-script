@@ -1,12 +1,26 @@
 import requests
+import argparse
 
 # Initial constant
-KNOWLEDGE_CENTER_TOKEN = "XnWPxNjmUJ2Ukzf22zrCGOCyfx9mvkmrTTMyp1"
 KNOWLEDGE_CENTER_ENDPOINT = "https://outline.rnd.mangkujagat.com/api"
 COLLECTION_ID = "e8e53145-445a-417c-ac61-bb52e23af200"
 README_FILE_NAME = "Readme.MD"
 ALLOWED_FILE_EXT = ".md"
 
+# Command
+parser = argparse.ArgumentParser()
+parser.add_argument("--name", help="Knowledge center name of this project", default=False)
+parser.add_argument("--token", help="Outline api token", default=False)
+
+# Project name
+project_name = parser.parse_args().name
+if not project_name:
+    raise ValueError("--name 'Name of this Project' is Required in args")
+
+# Token
+project_token = parser.parse_args().token
+if not project_token:
+    raise ValueError("--token 'Outline api token' is Required in args")
 
 def get_content_from_file(file_path):
     content = ""
@@ -20,7 +34,7 @@ def get_content_from_file(file_path):
 def send_request_to_outline(url, payload):
     headers = {
         "content-type": "application/json",
-        "Authorization": "Bearer " + KNOWLEDGE_CENTER_TOKEN,
+        "Authorization": "Bearer " + project_token,
     }
     r = requests.post(KNOWLEDGE_CENTER_ENDPOINT + url, json=payload, headers=headers)
     if r.status_code != requests.codes.ok:

@@ -1,14 +1,6 @@
 # import OS module
 from helper import *
 import os
-import argparse
-
-# Project name
-parser = argparse.ArgumentParser()
-parser.add_argument("--name", help="Knowledge center name of this project", default=False)
-project_name = parser.parse_args().name
-if not project_name:
-    raise ValueError("--name 'Name of this Project' is Required in args")
 
 # Project automation
 project_path = os.path.normpath(os.getcwd() + os.sep + os.pardir) + "/"
